@@ -8,6 +8,11 @@ public class Media1Service extends TileService {
     @Override
     public void onClick() {
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        am.setStreamVolume(AudioManager.STREAM_MUSIC, am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 3, AudioManager.FLAG_SHOW_UI);
+        int target = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 3;
+        if (am.getStreamVolume(AudioManager.STREAM_MUSIC) == target) {
+            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, AudioManager.FLAG_SHOW_UI);
+        } else {
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, target, AudioManager.FLAG_SHOW_UI);
+        }
     }
 }
