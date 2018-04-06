@@ -4,7 +4,7 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.service.quicksettings.TileService;
 
-public class MediaFullService extends TileService {
+public class MediaMaxService extends TileService {
     @Override
     public void onClick() {
         AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
