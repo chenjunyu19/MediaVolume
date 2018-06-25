@@ -1,18 +1,18 @@
 package cn.morfans.chenjunyu19.mediavolume;
 
-import android.content.Context;
-import android.media.AudioManager;
 import android.service.quicksettings.TileService;
 
 public class Media2Service extends TileService {
+    int n = 2;
+
     @Override
     public void onClick() {
-        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        int target = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 3 * 2;
-        if (am.getStreamVolume(AudioManager.STREAM_MUSIC) == target) {
-            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, AudioManager.FLAG_SHOW_UI);
-        } else {
-            am.setStreamVolume(AudioManager.STREAM_MUSIC, target, AudioManager.FLAG_SHOW_UI);
-        }
+        VolMan.setVol(this, n);
+        VolMan.setTile(this, getQsTile(), n);
+    }
+
+    @Override
+    public void onStartListening() {
+        VolMan.setTile(this, getQsTile(), n);
     }
 }

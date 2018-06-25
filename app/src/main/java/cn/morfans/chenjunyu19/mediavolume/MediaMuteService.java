@@ -1,17 +1,19 @@
 package cn.morfans.chenjunyu19.mediavolume;
 
-import android.content.Context;
-import android.media.AudioManager;
+import android.service.quicksettings.Tile;
 import android.service.quicksettings.TileService;
 
 public class MediaMuteService extends TileService {
+    int n = 0;
+
     @Override
     public void onClick() {
-        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        if (am.getStreamVolume(AudioManager.STREAM_MUSIC) == 0) {
-            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, AudioManager.FLAG_SHOW_UI);
-        } else {
-            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, AudioManager.FLAG_SHOW_UI);
-        }
+        VolMan.setVol(this, n);
+        VolMan.setTile(this, getQsTile(), n);
+    }
+
+    @Override
+    public void onStartListening() {
+        VolMan.setTile(this, getQsTile(), n);
     }
 }
