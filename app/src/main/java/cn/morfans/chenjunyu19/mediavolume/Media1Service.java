@@ -3,16 +3,17 @@ package cn.morfans.chenjunyu19.mediavolume;
 import android.service.quicksettings.TileService;
 
 public class Media1Service extends TileService {
-    int n = 1;
+    VolMan volMan;
 
     @Override
     public void onClick() {
-        VolMan.setVol(this, n);
-        VolMan.setTile(this, getQsTile(), n);
+        volMan.setVol();
+        volMan.setTile();
     }
 
     @Override
     public void onStartListening() {
-        VolMan.setTile(this, getQsTile(), n);
+        volMan = new VolMan(this, getQsTile(), 1);
+        volMan.setTile();
     }
 }
