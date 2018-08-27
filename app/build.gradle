@@ -7,8 +7,8 @@ android {
         applicationId "cn.morfans.chenjunyu19.mediavolume"
         minSdkVersion 24
         targetSdkVersion 28
-        versionCode 6
-        versionName "1.1.1"
+        versionCode 7
+        versionName "1.2"
     }
     buildTypes {
         release {

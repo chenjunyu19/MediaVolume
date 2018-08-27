@@ -1,6 +1,7 @@
 package cn.morfans.chenjunyu19.mediavolume;
 
 import android.content.Context;
+import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.service.quicksettings.Tile;
 
@@ -8,6 +9,7 @@ class VolMan {
     private Context c;
     private Tile t;
     private int n;
+    private BRReceiver br;
 
     VolMan(Context c) {
         this.c = c;
@@ -49,5 +51,14 @@ class VolMan {
             t.setState(Tile.STATE_INACTIVE);
         }
         t.updateTile();
+    }
+
+    void regBR() {
+        br = new BRReceiver(this);
+        c.registerReceiver(br, new IntentFilter("android.media.VOLUME_CHANGED_ACTION"));
+    }
+
+    void unregBR() {
+        c.unregisterReceiver(br);
     }
 }

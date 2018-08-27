@@ -15,5 +15,11 @@ public class Media1Service extends TileService {
     public void onStartListening() {
         volMan = new VolMan(this, getQsTile(), 1);
         volMan.setTile();
+        volMan.regBR();
+    }
+
+    @Override
+    public void onStopListening() {
+        volMan.unregBR();
     }
 }
