@@ -8,23 +8,23 @@ import android.service.quicksettings.Tile;
 class VolMan {
     private Context c;
     private Tile t;
-    private int n;
+    private AudioManager am;
+    private int target;
     private BRReceiver br;
 
     VolMan(Context c) {
         this.c = c;
+        am = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
     }
 
     VolMan(Context c, Tile t, int n) {
         this.c = c;
         this.t = t;
-        this.n = n;
+        am = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
+        target = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 3 * n;
     }
 
     void setVol() {
-        AudioManager am = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
-        int target = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 3 * n;
-
         if (target == 0 && isVol()) {
             am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, AudioManager.FLAG_SHOW_UI);
         } else if (target == 0 || isVol()) {
@@ -35,12 +35,10 @@ class VolMan {
     }
 
     private boolean isVol() {
-        AudioManager am = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
-        return am.getStreamVolume(AudioManager.STREAM_MUSIC) == am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 3 * n;
+        return am.getStreamVolume(AudioManager.STREAM_MUSIC) == target;
     }
 
     void showVol() {
-        AudioManager am = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
         am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
     }
 
