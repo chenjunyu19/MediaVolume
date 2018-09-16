@@ -3,15 +3,15 @@ package cn.morfans.chenjunyu19.mediavolume;
 import android.service.quicksettings.TileService;
 
 public class MediaPanelService extends TileService {
-    VolMan volMan;
+    Util util;
 
     @Override
     public void onClick() {
-        volMan.showVol();
+        util.showVol();
     }
 
     @Override
     public void onStartListening() {
-        volMan = new VolMan(this);
+        util = new Util(this);
     }
 }

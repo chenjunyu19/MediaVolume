@@ -5,14 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 
 public class BRReceiver extends BroadcastReceiver {
-    VolMan volMan;
+    Util util;
 
-    BRReceiver(VolMan volMan) {
-        this.volMan = volMan;
+    BRReceiver(Util util) {
+        this.util = util;
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        volMan.setTile();
+        util.setTile();
     }
 }

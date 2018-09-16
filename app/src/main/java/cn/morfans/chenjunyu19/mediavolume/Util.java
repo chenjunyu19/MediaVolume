@@ -5,19 +5,19 @@ import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.service.quicksettings.Tile;
 
-class VolMan {
+class Util {
     private Context c;
     private Tile t;
     private AudioManager am;
     private int target;
     private BRReceiver br;
 
-    VolMan(Context c) {
+    Util(Context c) {
         this.c = c;
         am = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
     }
 
-    VolMan(Context c, Tile t, int n) {
+    Util(Context c, Tile t, int n) {
         this.c = c;
         this.t = t;
         am = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
