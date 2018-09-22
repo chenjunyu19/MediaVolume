@@ -6,22 +6,24 @@ import android.media.AudioManager;
 import android.service.quicksettings.Tile;
 
 class Util {
-    private Context c;
-    private Tile t;
     private AudioManager am;
-    private int target;
     private BRReceiver br;
+    private Context context;
+    private int target;
+    private Tile tile;
 
-    Util(Context c) {
-        this.c = c;
-        am = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
+    Util(Context context) {
+        this.context = context;
+        am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 
-    Util(Context c, Tile t, int n) {
-        this.c = c;
-        this.t = t;
-        am = (AudioManager) c.getSystemService(Context.AUDIO_SERVICE);
-        target = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 3 * n;
+    Util(Context context, Tile tile, int n) {
+        this.context = context;
+        this.tile = tile;
+        am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        if (am != null) {
+            target = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 3 * n;
+        }
     }
 
     void setVol() {
@@ -44,19 +46,19 @@ class Util {
 
     void setTile() {
         if (isVol()) {
-            t.setState(Tile.STATE_ACTIVE);
+            tile.setState(Tile.STATE_ACTIVE);
         } else {
-            t.setState(Tile.STATE_INACTIVE);
+            tile.setState(Tile.STATE_INACTIVE);
         }
-        t.updateTile();
+        tile.updateTile();
     }
 
     void regBR() {
         br = new BRReceiver(this);
-        c.registerReceiver(br, new IntentFilter("android.media.VOLUME_CHANGED_ACTION"));
+        context.registerReceiver(br, new IntentFilter("android.media.VOLUME_CHANGED_ACTION"));
     }
 
     void unregBR() {
-        c.unregisterReceiver(br);
+        context.unregisterReceiver(br);
     }
 }
