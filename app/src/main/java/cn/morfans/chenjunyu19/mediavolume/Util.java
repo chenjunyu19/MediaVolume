@@ -1,13 +1,15 @@
 package cn.morfans.chenjunyu19.mediavolume;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
 import android.service.quicksettings.Tile;
 
 class Util {
     private AudioManager am;
-    private BRReceiver br;
+    private BroadcastReceiver br;
     private Context context;
     private int target;
     private Tile tile;
@@ -54,7 +56,12 @@ class Util {
     }
 
     void regBR() {
-        br = new BRReceiver(this);
+        br = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                setTile();
+            }
+        };
         context.registerReceiver(br, new IntentFilter("android.media.VOLUME_CHANGED_ACTION"));
     }
 
