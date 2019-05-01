@@ -3,6 +3,7 @@
     <string name="app_name">媒体音量磁贴</string>
     <string name="media_mute">媒体静音</string>
     <string name="media_1">1/3 媒体</string>
+    <string name="media_half">媒体半开</string>
     <string name="media_2">2/3 媒体</string>
     <string name="media_max">媒体全开</string>
     <string name="media_panel">媒体面板</string>

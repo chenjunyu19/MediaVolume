@@ -19,12 +19,12 @@ class Util {
         am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 
-    Util(Context context, Tile tile, int n) {
+    Util(Context context, Tile tile, double n) {
         this.context = context;
         this.tile = tile;
         am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         if (am != null) {
-            target = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 3 * n;
+            target = (int) Math.round(am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 3.0 * n);
         }
     }
 

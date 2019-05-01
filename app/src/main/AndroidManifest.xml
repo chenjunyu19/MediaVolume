@@ -26,6 +26,15 @@
             </intent-filter>
         </service>
         <service
+            android:name=".MediaHalfService"
+            android:icon="@drawable/ic_audio_volume_medium_symbolic"
+            android:label="@string/media_half"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
             android:name=".Media2Service"
             android:icon="@drawable/ic_audio_volume_medium_symbolic"
             android:label="@string/media_2"
