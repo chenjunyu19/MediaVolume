@@ -47,12 +47,16 @@ class Util {
     }
 
     void setTile() {
+        int targetState;
         if (isVol()) {
-            tile.setState(Tile.STATE_ACTIVE);
+            targetState = Tile.STATE_ACTIVE;
         } else {
-            tile.setState(Tile.STATE_INACTIVE);
+            targetState = Tile.STATE_INACTIVE;
         }
-        tile.updateTile();
+        if (tile.getState() != targetState) {
+            tile.setState(targetState);
+            tile.updateTile();
+        }
     }
 
     void regBR() {
