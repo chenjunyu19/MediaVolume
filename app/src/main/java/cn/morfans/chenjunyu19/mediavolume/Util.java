@@ -28,6 +28,13 @@ class Util {
         }
     }
 
+    Util(Context context, Tile tile, int target) {
+        this.context = context;
+        this.tile = tile;
+        this.target = target;
+        am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+    }
+
     void setVol() {
         if (target == 0 && isVol()) {
             am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, AudioManager.FLAG_SHOW_UI);

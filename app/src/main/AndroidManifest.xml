@@ -17,6 +17,15 @@
             </intent-filter>
         </service>
         <service
+            android:name=".MediaMinService"
+            android:icon="@drawable/ic_audio_volume_low_symbolic"
+            android:label="@string/media_min"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
+        <service
             android:name=".Media1Service"
             android:icon="@drawable/ic_audio_volume_low_symbolic"
             android:label="@string/media_1"

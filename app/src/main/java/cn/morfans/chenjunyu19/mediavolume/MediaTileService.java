@@ -5,9 +5,14 @@ import android.service.quicksettings.TileService;
 abstract class MediaTileService extends TileService {
     Util util;
     double n;
+    int target;
 
     MediaTileService(double n) {
         this.n = n;
+    }
+
+    MediaTileService(int target) {
+        this.target = target;
     }
 
     @Override
@@ -18,7 +23,11 @@ abstract class MediaTileService extends TileService {
 
     @Override
     public void onStartListening() {
-        util = new Util(this, getQsTile(), n);
+        if (n == 0.0) {
+            util = new Util(this, getQsTile(), target);
+        } else {
+            util = new Util(this, getQsTile(), n);
+        }
         util.setTile();
         util.regBR();
     }
