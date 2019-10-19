@@ -74,6 +74,8 @@ class Util {
             }
         };
         context.registerReceiver(br, new IntentFilter("android.media.VOLUME_CHANGED_ACTION"));
+        context.registerReceiver(br, new IntentFilter("android.media.STREAM_DEVICES_CHANGED_ACTION"));
+        context.registerReceiver(br, new IntentFilter("android.media.STREAM_MUTE_CHANGED_ACTION"));
     }
 
     void unregBR() {

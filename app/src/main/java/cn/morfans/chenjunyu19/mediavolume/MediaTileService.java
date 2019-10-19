@@ -18,7 +18,6 @@ abstract class MediaTileService extends TileService {
     @Override
     public void onClick() {
         util.setVol();
-        util.setTile();
     }
 
     @Override
