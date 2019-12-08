@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Provided by Coolapk/TedTeo (UID: 2121972) -->
+    <string name="app_name">媒體音量磁貼</string>
+    <string name="media_mute">媒體靜音</string>
+    <string name="media_min">媒體最小</string>
+    <string name="media_1">媒體 1/3</string>
+    <string name="media_half">媒體中等</string>
+    <string name="media_2">媒體 2/3</string>
+    <string name="media_max">媒體最大</string>
+    <string name="media_panel">媒體界面</string>
+</resources>
