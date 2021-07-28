@@ -4,35 +4,35 @@ import android.service.quicksettings.TileService;
 
 abstract class MediaTileService extends TileService {
     Util util;
-    double n;
-    int target;
+    double k;
+    int targetIndex;
 
-    MediaTileService(double n) {
-        this.n = n;
+    MediaTileService(double k) {
+        this.k = k;
     }
 
-    MediaTileService(int target) {
-        this.target = target;
+    MediaTileService(int targetIndex) {
+        this.targetIndex = targetIndex;
     }
 
     @Override
     public void onClick() {
-        util.setVol();
+        util.setVolume();
     }
 
     @Override
     public void onStartListening() {
-        if (n == 0.0) {
-            util = new Util(this, getQsTile(), target);
+        if (k == 0.0) {
+            util = new Util(this, getQsTile(), targetIndex);
         } else {
-            util = new Util(this, getQsTile(), n);
+            util = new Util(this, getQsTile(), k);
         }
         util.setTile();
-        util.regBR();
+        util.registerBroadcastReceiver();
     }
 
     @Override
     public void onStopListening() {
-        util.unregBR();
+        util.unregisterBroadcastReceiver();
     }
 }

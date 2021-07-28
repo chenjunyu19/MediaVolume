@@ -8,57 +8,65 @@ import android.media.AudioManager;
 import android.service.quicksettings.Tile;
 
 class Util {
-    private AudioManager am;
-    private BroadcastReceiver br;
-    private Context context;
-    private int target;
+    private final AudioManager am;
+    private final Context context;
+    private final String[] actions = {
+            "android.media.VOLUME_CHANGED_ACTION",
+            "android.media.STREAM_DEVICES_CHANGED_ACTION",
+            "android.media.STREAM_MUTE_CHANGED_ACTION"
+    };
+    private int targetIndex;
     private Tile tile;
+    private final BroadcastReceiver br = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            setTile();
+        }
+    };
 
     Util(Context context) {
         this.context = context;
         am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 
-    Util(Context context, Tile tile, double n) {
+    Util(Context context, Tile tile, double k) {
         this.context = context;
         this.tile = tile;
         am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        if (am != null) {
-            target = (int) Math.round(am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) / 3.0 * n);
-        }
+        targetIndex = (int) Math.round(am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * k);
     }
 
-    Util(Context context, Tile tile, int target) {
+    Util(Context context, Tile tile, int targetIndex) {
         this.context = context;
         this.tile = tile;
-        this.target = target;
+        this.targetIndex = targetIndex;
         am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
     }
 
-    void setVol() {
-        if (target == 0 && isVol()) {
-            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, AudioManager.FLAG_SHOW_UI);
-            if (isVol()) {
-                am.setStreamVolume(AudioManager.STREAM_MUSIC, 1, AudioManager.FLAG_SHOW_UI);
-            }
-        } else if (target == 0 || isVol()) {
-            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, AudioManager.FLAG_SHOW_UI);
-        } else {
-            am.setStreamVolume(AudioManager.STREAM_MUSIC, target, AudioManager.FLAG_SHOW_UI);
-        }
+    private boolean isTargetVolume() {
+        return am.getStreamVolume(AudioManager.STREAM_MUSIC) == targetIndex;
     }
 
-    private boolean isVol() {
-        return am.getStreamVolume(AudioManager.STREAM_MUSIC) == target;
-    }
-
-    void showVol() {
+    void showVolume() {
         am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_SAME, AudioManager.FLAG_SHOW_UI);
     }
 
+    void setVolume() {
+        if (targetIndex == 0 && isTargetVolume()) {
+            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, AudioManager.FLAG_SHOW_UI);
+            if (isTargetVolume()) {
+                am.setStreamVolume(AudioManager.STREAM_MUSIC, 1, AudioManager.FLAG_SHOW_UI);
+            }
+        } else if (targetIndex == 0 || isTargetVolume()) {
+            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, AudioManager.FLAG_SHOW_UI);
+        } else {
+            am.setStreamVolume(AudioManager.STREAM_MUSIC, targetIndex, AudioManager.FLAG_SHOW_UI);
+        }
+    }
+
     void setTile() {
-        int targetState;
-        if (isVol()) {
+        final int targetState;
+        if (isTargetVolume()) {
             targetState = Tile.STATE_ACTIVE;
         } else {
             targetState = Tile.STATE_INACTIVE;
@@ -69,19 +77,13 @@ class Util {
         }
     }
 
-    void regBR() {
-        br = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                setTile();
-            }
-        };
-        context.registerReceiver(br, new IntentFilter("android.media.VOLUME_CHANGED_ACTION"));
-        context.registerReceiver(br, new IntentFilter("android.media.STREAM_DEVICES_CHANGED_ACTION"));
-        context.registerReceiver(br, new IntentFilter("android.media.STREAM_MUTE_CHANGED_ACTION"));
+    void registerBroadcastReceiver() {
+        for (final String action : actions) {
+            context.registerReceiver(br, new IntentFilter(action));
+        }
     }
 
-    void unregBR() {
+    void unregisterBroadcastReceiver() {
         context.unregisterReceiver(br);
     }
 }

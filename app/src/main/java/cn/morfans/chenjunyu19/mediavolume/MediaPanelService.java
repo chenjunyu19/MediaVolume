@@ -7,7 +7,7 @@ public class MediaPanelService extends TileService {
 
     @Override
     public void onClick() {
-        util.showVol();
+        util.showVolume();
     }
 
     @Override
