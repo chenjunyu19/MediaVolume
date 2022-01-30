@@ -12,7 +12,8 @@
             android:name=".MediaMuteService"
             android:icon="@drawable/ic_audio_volume_muted_symbolic"
             android:label="@string/media_mute"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
@@ -21,7 +22,8 @@
             android:name=".MediaMinService"
             android:icon="@drawable/ic_audio_volume_low_symbolic"
             android:label="@string/media_min"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
@@ -30,7 +32,8 @@
             android:name=".Media1Service"
             android:icon="@drawable/ic_audio_volume_low_symbolic"
             android:label="@string/media_1"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
@@ -39,7 +42,8 @@
             android:name=".MediaHalfService"
             android:icon="@drawable/ic_audio_volume_medium_symbolic"
             android:label="@string/media_half"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
@@ -48,7 +52,8 @@
             android:name=".Media2Service"
             android:icon="@drawable/ic_audio_volume_medium_symbolic"
             android:label="@string/media_2"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
@@ -57,7 +62,8 @@
             android:name=".MediaMaxService"
             android:icon="@drawable/ic_audio_volume_high_symbolic"
             android:label="@string/media_max"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
@@ -66,7 +72,8 @@
             android:name=".MediaPanelService"
             android:icon="@drawable/ic_audiotrack_black_24dp"
             android:label="@string/media_panel"
-            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
