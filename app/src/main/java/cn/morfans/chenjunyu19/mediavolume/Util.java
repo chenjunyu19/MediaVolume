@@ -65,16 +65,8 @@ class Util {
     }
 
     void setTile() {
-        final int targetState;
-        if (isTargetVolume()) {
-            targetState = Tile.STATE_ACTIVE;
-        } else {
-            targetState = Tile.STATE_INACTIVE;
-        }
-        if (tile.getState() != targetState) {
-            tile.setState(targetState);
-            tile.updateTile();
-        }
+        tile.setState(isTargetVolume() ? Tile.STATE_ACTIVE : Tile.STATE_INACTIVE);
+        tile.updateTile();
     }
 
     void registerBroadcastReceiver() {
