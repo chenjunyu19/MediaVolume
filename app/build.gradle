@@ -3,14 +3,15 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 33
+    buildToolsVersion '33.0.0'
 
     defaultConfig {
         applicationId "cn.morfans.chenjunyu19.mediavolume"
         minSdk 24
-        targetSdk 31
-        versionCode 16
-        versionName "1.6.2"
+        targetSdk 33
+        versionCode 17
+        versionName "1.6.3"
     }
 
     buildTypes {
