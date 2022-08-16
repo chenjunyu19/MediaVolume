@@ -1,14 +1,18 @@
-apply plugin: 'com.android.application'
+plugins {
+    id 'com.android.application'
+}
 
 android {
-    compileSdkVersion 31
+    compileSdk 31
+
     defaultConfig {
         applicationId "cn.morfans.chenjunyu19.mediavolume"
-        minSdkVersion 24
-        targetSdkVersion 31
+        minSdk 24
+        targetSdk 31
         versionCode 16
         versionName "1.6.2"
     }
+
     buildTypes {
         release {
             minifyEnabled true
