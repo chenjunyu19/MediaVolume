@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Medienlautstärke-Kachel</string>
+    <string name="media_mute">Medien stummschalten</string>
+    <string name="media_min">Minimale Medienlautstärke</string>
+    <string name="media_1">1/3 Medienlautstärke</string>
+    <string name="media_half">Mittlere Medienlautstärke</string>
+    <string name="media_2">2/3 Medienlautstärke</string>
+    <string name="media_max">Maximale Medienlautstärke</string>
+    <string name="media_panel">Lautstärkemenü</string>
+</resources>
