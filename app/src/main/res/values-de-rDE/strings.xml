@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Provided by GitHub/berbjs (#1) -->
     <string name="app_name">Medienlautstärke-Kachel</string>
     <string name="media_mute">Medien stummschalten</string>
     <string name="media_min">Minimale Medienlautstärke</string>
