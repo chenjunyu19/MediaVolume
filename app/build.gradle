@@ -4,7 +4,6 @@ plugins {
 
 android {
     compileSdk 33
-    buildToolsVersion '33.0.0'
 
     defaultConfig {
         applicationId "cn.morfans.chenjunyu19.mediavolume"
@@ -20,4 +19,5 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    namespace 'cn.morfans.chenjunyu19.mediavolume'
 }
