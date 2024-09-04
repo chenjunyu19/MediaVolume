@@ -1,8 +1,9 @@
 plugins {
-    id 'com.android.application'
+    alias(libs.plugins.android.application)
 }
 
 android {
+    namespace 'cn.morfans.chenjunyu19.mediavolume'
     compileSdk 34
 
     defaultConfig {
@@ -19,5 +20,4 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'cn.morfans.chenjunyu19.mediavolume'
 }
