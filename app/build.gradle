@@ -4,14 +4,15 @@ plugins {
 
 android {
     namespace 'cn.morfans.chenjunyu19.mediavolume'
-    compileSdk 35
+    compileSdk 36
+    buildToolsVersion '36.0.0'
 
     defaultConfig {
         applicationId "cn.morfans.chenjunyu19.mediavolume"
         minSdk 24
-        targetSdk 35
-        versionCode 19
-        versionName "1.7.1"
+        targetSdk 36
+        versionCode 20
+        versionName "1.7.2"
     }
 
     buildTypes {
@@ -19,5 +20,10 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 }
