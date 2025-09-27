@@ -2,6 +2,9 @@
 
 在 Android 上使用通知栏磁贴（`Quicksettings Tile`）快捷设置媒体音量。
 
+- [GitHub Releases](https://github.com/chenjunyu19/MediaVolume/releases)
+- [IzzyOnDroid F-Droid Repository](https://apt.izzysoft.de/packages/cn.morfans.chenjunyu19.mediavolume)
+
 ## 用到的开源项目
 
 - [dde-dock](https://github.com/linuxdeepin/dde-dock)：使用了 `sound` 插件中的几个图标（`ic_audio_volume_*_symbolic.xml`）。
