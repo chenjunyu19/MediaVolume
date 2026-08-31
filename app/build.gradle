@@ -5,13 +5,13 @@ plugins {
 android {
     namespace 'cn.morfans.chenjunyu19.mediavolume'
     compileSdk {
-        version = release(36)
+        version = release(37)
     }
 
     defaultConfig {
         applicationId "cn.morfans.chenjunyu19.mediavolume"
         minSdk 24
-        targetSdk 36
+        targetSdk 37
         versionCode 20
         versionName "1.7.2"
     }
