@@ -1,6 +1,5 @@
 package cn.morfans.chenjunyu19.mediavolume;
 
-import android.content.Context;
 import android.media.AudioManager;
 import android.service.quicksettings.TileService;
 
@@ -9,7 +8,7 @@ public class MediaPanelService extends TileService {
 
     @Override
     public void onStartListening() {
-        am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        am = getSystemService(AudioManager.class);
     }
 
     @Override

@@ -14,9 +14,10 @@ abstract class MediaTileService extends TileService {
             "android.media.STREAM_DEVICES_CHANGED_ACTION",
             "android.media.STREAM_MUTE_CHANGED_ACTION"
     };
+    private static final int STREAM = AudioManager.STREAM_MUSIC;
     private AudioManager am;
     private Tile tile;
-    private double k;
+    private float ratio;
     private int targetIndex;
     private final BroadcastReceiver br = new BroadcastReceiver() {
         @Override
@@ -25,8 +26,8 @@ abstract class MediaTileService extends TileService {
         }
     };
 
-    MediaTileService(double k) {
-        this.k = k;
+    MediaTileService(float ratio) {
+        this.ratio = ratio;
     }
 
     MediaTileService(int targetIndex) {
@@ -35,15 +36,17 @@ abstract class MediaTileService extends TileService {
 
     @Override
     public void onStartListening() {
-        am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        am = getSystemService(AudioManager.class);
         tile = getQsTile();
-        if (k != 0.0) {
-            targetIndex = (int) Math.round(am.getStreamMaxVolume(AudioManager.STREAM_MUSIC) * k);
+        if (ratio != 0.0) {
+            targetIndex = Math.round(am.getStreamMaxVolume(STREAM) * ratio);
         }
-        setTile();
+        IntentFilter filter = new IntentFilter();
         for (final String action : ACTIONS) {
-            registerReceiver(br, new IntentFilter(action));
+            filter.addAction(action);
         }
+        registerReceiver(br, filter);
+        setTile();
     }
 
     @Override
@@ -54,19 +57,19 @@ abstract class MediaTileService extends TileService {
     @Override
     public void onClick() {
         if (targetIndex == 0 && isTargetVolume()) {
-            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_UNMUTE, AudioManager.FLAG_SHOW_UI);
+            am.adjustStreamVolume(STREAM, AudioManager.ADJUST_UNMUTE, AudioManager.FLAG_SHOW_UI);
             if (isTargetVolume()) {
-                am.setStreamVolume(AudioManager.STREAM_MUSIC, 1, AudioManager.FLAG_SHOW_UI);
+                am.setStreamVolume(STREAM, 1, AudioManager.FLAG_SHOW_UI);
             }
         } else if (targetIndex == 0 || isTargetVolume()) {
-            am.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_MUTE, AudioManager.FLAG_SHOW_UI);
+            am.adjustStreamVolume(STREAM, AudioManager.ADJUST_MUTE, AudioManager.FLAG_SHOW_UI);
         } else {
-            am.setStreamVolume(AudioManager.STREAM_MUSIC, targetIndex, AudioManager.FLAG_SHOW_UI);
+            am.setStreamVolume(STREAM, targetIndex, AudioManager.FLAG_SHOW_UI);
         }
     }
 
     private boolean isTargetVolume() {
-        return am.getStreamVolume(AudioManager.STREAM_MUSIC) == targetIndex;
+        return am.getStreamVolume(STREAM) == targetIndex;
     }
 
     private void setTile() {
