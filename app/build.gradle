@@ -3,30 +3,23 @@ plugins {
 }
 
 android {
-    namespace 'cn.morfans.chenjunyu19.mediavolume'
-    compileSdk {
-        version = release(37)
-    }
+    namespace = 'cn.morfans.chenjunyu19.mediavolume'
+    compileSdk = 37
 
     defaultConfig {
-        applicationId "cn.morfans.chenjunyu19.mediavolume"
-        minSdk 24
-        targetSdk 37
-        versionCode 21
-        versionName "1.7.3"
+        applicationId = "cn.morfans.chenjunyu19.mediavolume"
+        minSdk = 24
+        targetSdk = 37
+        versionCode = 21
+        versionName = "1.7.3"
     }
 
     buildTypes {
         release {
             optimization {
-                enable true
+                enable = true
             }
         }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
     }
 
     dependenciesInfo {
