@@ -5,6 +5,7 @@ plugins {
 android {
     namespace = 'cn.morfans.chenjunyu19.mediavolume'
     compileSdk = 37
+    enableKotlin = false
 
     defaultConfig {
         applicationId = "cn.morfans.chenjunyu19.mediavolume"
